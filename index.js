@@ -18,6 +18,8 @@ let secondPWEl = document.getElementById("second-pw");
 let includeSymbols = document.getElementById("symbols");
 let includeNumbers = document.getElementById("numbers");
 
+let errorMsgEl = document.getElementById("error-msg");
+
 function generatePassword() {
   firstPWEl.textContent = "";
   secondPWEl.textContent = "";
@@ -35,6 +37,7 @@ function generatePassword() {
       secondPassword += allCharacters[secondRandomPW];
       firstPWEl.textContent = firstPassword;
       secondPWEl.textContent = secondPassword;
+      errorMsgEl.textContent = "";
     }
   } else if (
     includeSymbols.checked === true &&
@@ -47,6 +50,7 @@ function generatePassword() {
       secondPassword += charsAndSymbols[secondRandomPW];
       firstPWEl.textContent = firstPassword;
       secondPWEl.textContent = secondPassword;
+      errorMsgEl.textContent = "";
     }
   } else if (
     includeSymbols.checked === false &&
@@ -59,7 +63,13 @@ function generatePassword() {
       secondPassword += charsAndNums[secondRandomPW];
       firstPWEl.textContent = firstPassword;
       secondPWEl.textContent = secondPassword;
+      errorMsgEl.textContent = "";
     }
+  } else if (
+    includeSymbols.checked === false &&
+    includeNumbers.checked === false
+  ) {
+    errorMsgEl.textContent = "Atleast one setting must be selected.";
   }
 }
 
